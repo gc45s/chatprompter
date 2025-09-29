@@ -3,12 +3,31 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, set_seed
 
 # Load GPT2 Indonesia
 @st.cache_resource
-def load_model():
-    model_name = "cahya/gpt2-small-indonesian-522M"
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name)
-    return pipeline("text-generation", model=model, tokenizer=tokenizer)
+#def load_model():
+#    model_name = "cahya/gpt2-small-indonesian-522M"
+#    tokenizer = AutoTokenizer.from_pretrained(model_name)
+#    model = AutoModelForCausalLM.from_pretrained(model_name)
+#    return pipeline("text-generation", model=model, tokenizer=tokenizer)
+#---------
 
+# Load model directly
+
+def load_model())
+    tokenizer = AutoTokenizer.from_pretrained("Sahabat-AI/Llama-Sahabat-AI-v2-70B-IT")
+    model = AutoModelForCausalLM.from_pretrained("Sahabat-AI/Llama-Sahabat-AI-v2-70B-IT")
+    messages = [
+        {"role": "user", "content": "Who are you?"},
+    ]
+    inputs = tokenizer.apply_chat_template(
+    	messages,
+    	add_generation_prompt=True,
+    	tokenize=True,
+    	return_dict=True,
+    	return_tensors="pt",
+    ).to(model.device)
+    
+    outputs = model.generate(**inputs, max_new_tokens=40)
+    print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
 generator = load_model()
 set_seed(42)
 
@@ -21,4 +40,5 @@ if prompt:
     results = generator(prompt, max_length=50, num_return_sequences=3)
     for i, res in enumerate(results):
         st.markdown(f"**{i+1}.** {res['generated_text']}")
+
 
