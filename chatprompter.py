@@ -26,8 +26,8 @@ def load_model():
     	return_tensors="pt",
     ).to(model.device)
     
-    outputs = model.generate(**inputs, max_new_tokens=40)
-    print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
+#    outputs = model.generate(**inputs, max_new_tokens=40)
+#    print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
 generator = load_model()
 set_seed(42)
 
@@ -40,6 +40,7 @@ if prompt:
     results = generator(prompt, max_length=50, num_return_sequences=3)
     for i, res in enumerate(results):
         st.markdown(f"**{i+1}.** {res['generated_text']}")
+
 
 
 
