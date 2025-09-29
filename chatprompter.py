@@ -12,7 +12,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, set_seed
 
 # Load model directly
 
-def load_model())
+def load_model():
     tokenizer = AutoTokenizer.from_pretrained("Sahabat-AI/Llama-Sahabat-AI-v2-70B-IT")
     model = AutoModelForCausalLM.from_pretrained("Sahabat-AI/Llama-Sahabat-AI-v2-70B-IT")
     messages = [
@@ -40,5 +40,6 @@ if prompt:
     results = generator(prompt, max_length=50, num_return_sequences=3)
     for i, res in enumerate(results):
         st.markdown(f"**{i+1}.** {res['generated_text']}")
+
 
 
