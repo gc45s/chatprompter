@@ -1,3 +1,9 @@
+FROM busybox
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Use an official Python runtime as a parent image
 FROM python:3.12-slim
 
@@ -28,3 +34,4 @@ EXPOSE 8000
 
 # Default command to run the app
 CMD ["python", "main.py"]
+
