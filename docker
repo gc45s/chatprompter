@@ -1,0 +1,2 @@
+docker image build -t my-time-image .
+docker run my-time-image
